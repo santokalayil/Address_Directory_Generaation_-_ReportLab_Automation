@@ -1,6 +1,7 @@
 # from reportlab.lib.pagesizes import letter, A4
 # PAGE_WIDTH, PAGE_HEIGHT = A4
 from reportlab.lib.units import inch, mm
+
 PAGE_WIDTH, PAGE_HEIGHT = 140*mm, 215*mm
 page_size = (PAGE_WIDTH, PAGE_HEIGHT)
 TOP_MARGIN, BOTTOM_MARGIN = 0.5*inch, 0.5*inch
