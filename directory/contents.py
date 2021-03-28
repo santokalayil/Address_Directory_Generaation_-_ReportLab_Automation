@@ -77,6 +77,15 @@ def family_title_section(fam_id, family_head):
     )
     return [heading_title_table] # Spacer(width=PAGE_FRAME_WIDTH, height=4, isGlue=True), 
 
+def address_section(fam_id):
+    para_table = RLTable([
+        [common_data['text']['current_address']],
+            #[common_data['text']['email']],
+            [common_data['text']['native_address']],
+            [common_data['text']['native_parish']],
+            [common_data['text']['diocese']],
+            ])
+    return para_table
 
 Elements += family_title_section(fam_id=12, family_head="Thomas K J")
 Elements += ribbon(color=color_light)
