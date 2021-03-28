@@ -77,17 +77,22 @@ def family_title_section(fam_id, family_head):
     )
     return [heading_title_table] # Spacer(width=PAGE_FRAME_WIDTH, height=4, isGlue=True), 
 
-def address_section(fam_id):
+def address_section():
+    address_current = "#29, HSR, Hennur, Bangalore"
+    address_native = "kalayil house, chennenkalthadom p o, mannarakulanji"
+    parish_native = "St. John Chrysostom Malankara Catholic Church, Mannaralkunlanji"
+    diocese_native = "Pathanamthitta"
     para_table = RLTable([
-        [common_data['text']['current_address']],
-            #[common_data['text']['email']],
-            [common_data['text']['native_address']],
-            [common_data['text']['native_parish']],
-            [common_data['text']['diocese']],
-            ])
+        [f"""Current Address: {address_current}"""],
+        [f"""Native Address: {address_native}"""],
+        [f"""Native Parish:{parish_native}"""],
+        [f"""Native Diocese: {diocese_native}"""],
+        ])
     return para_table
 
 Elements += family_title_section(fam_id=12, family_head="Thomas K J")
+Elements.append(address_section())
+
 Elements += ribbon(color=color_light)
 Elements.append(FrameBreak())
 Elements += ribbon(height=200, width=PAGE_FRAME_WIDTH, color=color_yellow)
