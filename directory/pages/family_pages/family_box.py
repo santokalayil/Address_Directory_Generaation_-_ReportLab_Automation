@@ -143,6 +143,9 @@ def photo_and_address_section():
     return section
 
 
+
+def members_table_section():
+    return Paragraph('Hi')
 # box_elements = [
 
 # ]
