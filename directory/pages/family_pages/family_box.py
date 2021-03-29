@@ -144,8 +144,8 @@ def photo_and_address_section():
 
 
 
-def members_table_section():
-    return Paragraph('Hi')
+# from . import members_table_section
 # box_elements = [
 
 # ]
+from .members_table import members_table_section
