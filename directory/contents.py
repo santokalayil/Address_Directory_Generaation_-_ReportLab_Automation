@@ -12,10 +12,12 @@ Elements.append(NextPageTemplate(section_ids.dual_row_family_id))  # marking sec
 
 from .pages.family_pages.family_box import (
     family_title_section,
-    photo_and_address_section
+    photo_and_address_section,
+    members_table_section,
 )
 
 Elements += [
     family_title_section(fam_id=12, family_head="Thomas K J"),
-    photo_and_address_section()
+    photo_and_address_section(),
+    members_table_section()
 ]
