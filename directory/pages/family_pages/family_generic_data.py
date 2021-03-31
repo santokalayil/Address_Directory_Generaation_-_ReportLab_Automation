@@ -1,9 +1,10 @@
 from directory.database.get import basic_query
 import os
+from directory.settings import db_url
 # from reportlab.platypus import Paragraph, Spacer
 # from reportlab.lib.styles import ParagraphStyle
 
-def family_common_data(fam_id, db_url='sqlite.db'):
+def family_common_data(fam_id, db_url=db_url):
     sql = basic_query(db_url).sql_dataframe
     # head of famliy
     head_of_family = sql(f'''SELECT * FROM members where famid={fam_id} AND rltshp="Self"''').loc[0].member_name
