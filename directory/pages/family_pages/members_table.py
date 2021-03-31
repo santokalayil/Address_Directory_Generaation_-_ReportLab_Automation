@@ -1,9 +1,10 @@
 from directory.database.get import basic_query
 import os
 from directory.settings import  *
+from directory.settings import db_url
 from reportlab.lib import colors
 
-def members_table_section(fam_id, db_url='sqlite.db'):
+def members_table_section(fam_id, db_url=db_url):
     from directory.database.get import basic_query
     sql = basic_query(db_url).sql_dataframe
 
