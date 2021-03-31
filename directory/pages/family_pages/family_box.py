@@ -123,21 +123,23 @@ import os
 from reportlab.platypus import Image
 # find image width just above address section function
 def photo_section(fam_id):
-    url = os.path.join('photos', f'{fam_id}.jpg')
-    img = Image(filename=url, width=image_width, height=image_height, )
+    folder = "photos"
+    image_file = f'{fam_id}.jpg'
+    if image_file in os.listdir(folder):
+        # print("FILE FOUND")
+        fam_img_url = os.path.join(folder, image_file)
+        img = Image(filename=fam_img_url, width=image_width, height=image_height, )
+    else:
+        # print("FILE NOT FOUND")
+        fam_img_url = os.path.join(folder, 'unavailable.jpg')
+        img = Image(filename=fam_img_url, width=image_width, height=image_height, )
+
+    # url = os.path.join('photos', f'{fam_id}.jpg')
+    # img = Image(filename=url, width=image_width, height=image_height, )
     img.hAlign = 'CENTER'
     return img
 
-    # folder = os.path.join('photos', 'resized')
-    # image_file = f'{fam_id}.jpg'
-    # if image_file in os.listdir(folder):
-    #     # print("FILE FOUND")
-    #     fam_img_url = os.path.join(folder, image_file)
-    #     fm_img = family_image(fam_img_url).generate()
-    # else:
-    #     # print("FILE NOT FOUND")
-    #     fam_img_url = os.path.join(folder, 'unavailable.jpg')
-    #     fm_img = family_image(fam_img_url).generate()
+
 
 from reportlab.platypus import Table
 def photo_and_address_section(fam_id, common_data):
