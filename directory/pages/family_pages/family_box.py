@@ -17,14 +17,20 @@ from reportlab.platypus import Spacer
 from reportlab.platypus import TableStyle
 
 def produce_heading(text):
-    heading_title_table = RLTable([[text.upper(),]], colWidths=[PAGE_FRAME_WIDTH])
+    heading_title_table = RLTable([[text.upper(),]],
+        colWidths=[PAGE_FRAME_WIDTH],
+        rowHeights=[20]
+    )
     heading_title_table.setStyle(
         TableStyle([
             ('BACKGROUND', (0, 0), (-1, -1), color_general),
             ("TEXTCOLOR", (0, 0), (-1, -1), colors.whitesmoke),
         ])
     )
-    return [Spacer(width=PAGE_FRAME_WIDTH, height=4, isGlue=True), heading_title_table, Spacer(width=PAGE_FRAME_WIDTH, height=2, isGlue=True)]
+    return [
+            # Spacer(width=PAGE_FRAME_WIDTH, height=4, isGlue=True), 
+            heading_title_table, Spacer(width=PAGE_FRAME_WIDTH, height=2, isGlue=True),
+        ]
 
 def horizontal_row(height=3, width=PAGE_FRAME_WIDTH, color=colors.Color(0.2, 0.3, 0.4)):
     row_table = RLTable([["",]], colWidths=[width], rowHeights=[height])
@@ -47,7 +53,7 @@ def ribbon(height=10, width=PAGE_FRAME_WIDTH, color=color_light, space_before=0)
 family_title_background = colors.Color(0.5, 0.1, 0.6)
 family_title_text_color = colors.white # colors.whitesmoke
 
-FAMILY_TITLE_SECTION_ROW_HEIGHT = PAGE_FRAME_HEIGHT/25
+FAMILY_TITLE_SECTION_ROW_HEIGHT = PAGE_FRAME_HEIGHT/30
 
 def family_title_section(fam_id, family_head):
     text = f'''{fam_id}. {family_head}'''
@@ -116,17 +122,28 @@ def address_section():
 import os
 from reportlab.platypus import Image
 # find image width just above address section function
-def photo_section():
-    url = os.path.join('photos', '1.jpg')
+def photo_section(fam_id):
+    url = os.path.join('photos', f'{fam_id}.jpg')
     img = Image(filename=url, width=image_width, height=image_height, )
     img.hAlign = 'CENTER'
     return img
 
+    # folder = os.path.join('photos', 'resized')
+    # image_file = f'{fam_id}.jpg'
+    # if image_file in os.listdir(folder):
+    #     # print("FILE FOUND")
+    #     fam_img_url = os.path.join(folder, image_file)
+    #     fm_img = family_image(fam_img_url).generate()
+    # else:
+    #     # print("FILE NOT FOUND")
+    #     fam_img_url = os.path.join(folder, 'unavailable.jpg')
+    #     fm_img = family_image(fam_img_url).generate()
+
 from reportlab.platypus import Table
-def photo_and_address_section():
+def photo_and_address_section(fam_id):
     section = Table(
         [
-            [photo_section(), address_section()]
+            [photo_section(fam_id), address_section()]
         ],
         colWidths=[image_width, PAGE_FRAME_WIDTH-image_width],
         # rowHeights=[(PAGE_FRAME_HEIGHT/2) - FAMILY_TITLE_SECTION_ROW_HEIGHT]
