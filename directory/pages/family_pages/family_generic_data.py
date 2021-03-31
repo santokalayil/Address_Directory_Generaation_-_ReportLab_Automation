@@ -28,7 +28,11 @@ def family_common_data(fam_id, db_url=db_url):
     po = f'''{str(na_series['po']).strip()} P. O.''' if len(str(na_series['po']).strip()) else ''
     the_rest = ', '.join([str(i).strip() for i in na_series['place':'pin'].values if len(str(i).strip())])
     na_list = [house_name, po, the_rest]
-    native_text = ', '.join(na_list)
+    # if nothing other than spaces in na_list, then removing those element and clearing text to none if no valuable element at all
+    for el in na_list:
+        if el == "" or el == " ":
+            na_list.remove(el)
+    native_text = ', '.join(na_list) if na_list else ""
     native_address = f'''{native_text}''' if len(native_text.strip()) else ''
 
     # native parish details
