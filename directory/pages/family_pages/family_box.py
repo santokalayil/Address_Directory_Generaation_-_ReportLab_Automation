@@ -55,8 +55,8 @@ family_title_text_color = colors.white # colors.whitesmoke
 
 FAMILY_TITLE_SECTION_ROW_HEIGHT = PAGE_FRAME_HEIGHT/30
 
-def family_title_section(fam_id, family_head):
-    text = f'''{fam_id}. {family_head}'''
+def family_title_section(fam_id, order_id, family_head):
+    text = f'''{order_id}. {family_head} -- Family_id = {fam_id}'''
     heading_title_table = RLTable([[text.upper(),]], colWidths=[PAGE_FRAME_WIDTH], rowHeights=[FAMILY_TITLE_SECTION_ROW_HEIGHT])
     heading_title_table.setStyle(
         TableStyle([
@@ -83,7 +83,7 @@ styleN = styles['Normal']
 styleN.fontName = 'oswald_light'
 styleN.fontSize = 8
 
-def address_section():
+def address_section(common_data):
     address_current = "#29, HSR, Hennur, Bangalore"
     address_native = "kalayil house, chennenkalthadom p o, mannarakulanji"
     parish_native = "St. John Chrysostom Malankara Catholic Church, Mannaralkunlanji"
@@ -91,10 +91,10 @@ def address_section():
     new_line = "<br/>"
 
     address_paragraph = Paragraph(
-        f"""Current Address: {address_current}"""+new_line+
-        f"""Native Address: {address_native}"""+new_line+
-        f"""Native Parish:{parish_native}"""+new_line+
-        f"""Native Diocese: {diocese_native}""", 
+        f"""Current Address: {common_data['text']['current_address']}"""+new_line+
+        f"""Native Address: {common_data['text']['native_address']}"""+new_line+
+        f"""Native Parish:{common_data['text']['native_parish']}"""+new_line+
+        f"""Native Diocese: {common_data['text']['diocese']}""", 
         styleN
         )
     para_table = RLTable(
@@ -140,10 +140,10 @@ def photo_section(fam_id):
     #     fm_img = family_image(fam_img_url).generate()
 
 from reportlab.platypus import Table
-def photo_and_address_section(fam_id):
+def photo_and_address_section(fam_id, common_data):
     section = Table(
         [
-            [photo_section(fam_id), address_section()]
+            [photo_section(fam_id), address_section(common_data)]
         ],
         colWidths=[image_width, PAGE_FRAME_WIDTH-image_width],
         # rowHeights=[(PAGE_FRAME_HEIGHT/2) - FAMILY_TITLE_SECTION_ROW_HEIGHT]
@@ -166,3 +166,19 @@ def photo_and_address_section(fam_id):
 
 # ]
 from .members_table import members_table_section
+
+from .family_generic_data import family_common_data
+from reportlab.platypus import FrameBreak
+
+def generate_box_elements(fam_id, order_id):
+    common_data = family_common_data(fam_id)
+
+    box_elements = [
+        family_title_section(fam_id=fam_id, order_id=order_id, family_head=common_data['head']),
+        photo_and_address_section(fam_id=fam_id,common_data=common_data),
+        members_table_section(fam_id),
+        FrameBreak()
+    ]
+    return box_elements
+
+
