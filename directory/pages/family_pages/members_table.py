@@ -26,7 +26,8 @@ def members_table_section(fam_id, db_url='sqlite.db'):
     pct_len_col = list(map(lambda x: x / sum(lengths_col), lengths_col))
     col_widths = list(map(lambda x: PAGE_FRAME_WIDTH * x, pct_len_col))
 
-    members_table = RLTable(members_data, colWidths=col_widths, )
+    row_height = 16
+    members_table = RLTable(members_data, colWidths=col_widths, rowHeights=[row_height for i in range(len(members_data))])
 
     # setting styles
     members_table.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, 0), colors.Color(0.2, 0.2, 0.3)),
