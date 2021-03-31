@@ -11,3 +11,5 @@ export_name_url = 'directory_final.pdf'
 
 PAGE_FRAME_WIDTH = PAGE_WIDTH - (LEFT_MARGIN + RIGHT_MARGIN)
 PAGE_FRAME_HEIGHT = PAGE_HEIGHT - (TOP_MARGIN + BOTTOM_MARGIN)
+
+db_url = 'sqlite.db'
