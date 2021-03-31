@@ -56,7 +56,7 @@ family_title_text_color = colors.white # colors.whitesmoke
 FAMILY_TITLE_SECTION_ROW_HEIGHT = PAGE_FRAME_HEIGHT/30
 
 def family_title_section(fam_id, order_id, family_head):
-    text = f'''{order_id}. {family_head} -- Family_id = {fam_id}'''
+    text = f'''{order_id}. {family_head}'''  #  -- Family_id = {fam_id}
     heading_title_table = RLTable([[text.upper(),]], colWidths=[PAGE_FRAME_WIDTH], rowHeights=[FAMILY_TITLE_SECTION_ROW_HEIGHT])
     heading_title_table.setStyle(
         TableStyle([
@@ -93,8 +93,8 @@ def address_section(common_data):
     address_paragraph = Paragraph(
         f"""Current Address: {common_data['text']['current_address']}"""+new_line+
         f"""Native Address: {common_data['text']['native_address']}"""+new_line+
-        f"""Native Parish:{common_data['text']['native_parish']}"""+new_line+
-        f"""Native Diocese: {common_data['text']['diocese']}""", 
+        f"""Native Parish:{common_data['text']['native_parish']}"""+new_line+  # common_data['text']['diocese'] , # remove comma if using next line
+        f"""Diocese: {common_data['text']['diocese']}""", 
         styleN
         )
     para_table = RLTable(
