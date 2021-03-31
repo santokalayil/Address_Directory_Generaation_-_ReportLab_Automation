@@ -46,6 +46,8 @@ def single_frame(doc, id):
 # def double_row_frame(doc, ids):
 #     return [top_frame, bottom_frame] # bottom_frame
 
+from .settings import frame_boundary as boundary
+
 class double_row_frame():
     def __init__(self, doc, ids):
         self.doc = doc
@@ -60,7 +62,7 @@ class double_row_frame():
         ids = self.ids
         frame = Frame(x1=doc.leftMargin, y1=doc.height/2,  #  + (PAGE_FRAME_HEIGHT/2)
                         width=PAGE_FRAME_WIDTH, height=(PAGE_FRAME_HEIGHT/2),
-                        id=ids[0], showBoundary=1)
+                        id=ids[0], showBoundary=boundary)
 
         return frame
 
@@ -70,7 +72,7 @@ class double_row_frame():
         ids = self.ids
         frame = Frame(x1=doc.leftMargin, y1=doc.bottomMargin,  # if y1 increase bottom frame goes up
                     width=PAGE_FRAME_WIDTH, height=PAGE_FRAME_HEIGHT/2,   # width=doc.width
-                    id=ids[1], showBoundary=1)
+                    id=ids[1], showBoundary=boundary)
         return frame
 
     def generate(self):
