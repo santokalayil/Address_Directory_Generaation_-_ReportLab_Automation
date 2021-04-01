@@ -10,20 +10,13 @@ fonts.register()
 # initializing document
 doc = master.document()
 
-# setting frame
-
-# families_info_page_object = master.double_row_frame(doc, ["box_top", "box_bottom"])
-# families_info_page_frame = families_info_page_object.generate()
 from .pages.family_pages import page_template as family_page_template
+from .pages.birthdays import page_template as birthday_page_template
 
-birthday_frame = master.single_frame(doc, id='normal')
-
-from . import section_ids
-
-# setting master
+# setting master page templates
 doc.addPageTemplates([
   family_page_template,
-  PageTemplate(id=section_ids.birthday_pages_id, frames=birthday_frame, onPage=master.default_master),
+  birthday_page_template,
   ])
 
 # Adding elements
