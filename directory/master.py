@@ -76,5 +76,7 @@ class double_row_frame():
         return frame
 
     def generate(self):
-        return [self.top_frame, self.bottom_frame]
+        # remove one of the frames from list to print one frame alone
+        return [self.top_frame, self.bottom_frame] # , self.bottom_frame
+    
 
