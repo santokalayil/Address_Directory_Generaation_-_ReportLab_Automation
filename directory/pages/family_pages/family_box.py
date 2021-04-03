@@ -16,39 +16,39 @@ from reportlab.platypus import Table as RLTable
 from reportlab.platypus import Spacer
 from reportlab.platypus import TableStyle
 
-def produce_heading(text):
-    heading_title_table = RLTable([[text.upper(),]],
-        colWidths=[PAGE_FRAME_WIDTH],
-        rowHeights=[20]
-    )
-    heading_title_table.setStyle(
-        TableStyle([
-            ('BACKGROUND', (0, 0), (-1, -1), color_general),
-            ("TEXTCOLOR", (0, 0), (-1, -1), colors.whitesmoke),
-        ])
-    )
-    return [
-            # Spacer(width=PAGE_FRAME_WIDTH, height=4, isGlue=True), 
-            heading_title_table, Spacer(width=PAGE_FRAME_WIDTH, height=2, isGlue=True),
-        ]
+# def produce_heading(text):
+#     heading_title_table = RLTable([[text.upper(),]],
+#         colWidths=[PAGE_FRAME_WIDTH],
+#         rowHeights=[20]
+#     )
+#     heading_title_table.setStyle(
+#         TableStyle([
+#             ('BACKGROUND', (0, 0), (-1, -1), color_general),
+#             ("TEXTCOLOR", (0, 0), (-1, -1), colors.whitesmoke),
+#         ])
+#     )
+#     return [
+#             # Spacer(width=PAGE_FRAME_WIDTH, height=4, isGlue=True), 
+#             heading_title_table, Spacer(width=PAGE_FRAME_WIDTH, height=2, isGlue=True),
+#         ]
 
-def horizontal_row(height=3, width=PAGE_FRAME_WIDTH, color=colors.Color(0.2, 0.3, 0.4)):
-    row_table = RLTable([["",]], colWidths=[width], rowHeights=[height])
-    row_table.setStyle(
-        TableStyle([
-            ('BACKGROUND', (0, 0), (-1, -1), color),
-        ])
-    )
-    return [Spacer(width=PAGE_FRAME_WIDTH, height=4, isGlue=True), row_table, Spacer(width=PAGE_FRAME_WIDTH, height=2, isGlue=True)]
+# def horizontal_row(height=3, width=PAGE_FRAME_WIDTH, color=colors.Color(0.2, 0.3, 0.4)):
+#     row_table = RLTable([["",]], colWidths=[width], rowHeights=[height])
+#     row_table.setStyle(
+#         TableStyle([
+#             ('BACKGROUND', (0, 0), (-1, -1), color),
+#         ])
+#     )
+#     return [Spacer(width=PAGE_FRAME_WIDTH, height=4, isGlue=True), row_table, Spacer(width=PAGE_FRAME_WIDTH, height=2, isGlue=True)]
 
-def ribbon(height=10, width=PAGE_FRAME_WIDTH, color=color_light, space_before=0):
-    row_table = RLTable([["",]], colWidths=[width], rowHeights=[height])
-    row_table.setStyle(
-        TableStyle([
-            ('BACKGROUND', (0, 0), (-1, -1), color),
-        ])
-    )
-    return [row_table]
+# def ribbon(height=10, width=PAGE_FRAME_WIDTH, color=color_light, space_before=0):
+#     row_table = RLTable([["",]], colWidths=[width], rowHeights=[height])
+#     row_table.setStyle(
+#         TableStyle([
+#             ('BACKGROUND', (0, 0), (-1, -1), color),
+#         ])
+#     )
+#     return [row_table]
 
 family_title_background = colors.Color(0.5, 0.1, 0.6)
 family_title_text_color = colors.white # colors.whitesmoke
