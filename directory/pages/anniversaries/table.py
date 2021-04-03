@@ -42,7 +42,8 @@ def generate():
          ("FONTNAME", (0, 1), (-1, -1), "oswald_extralight"),  # other row fonts
          ("FONTSIZE", (0, 1), (-1, -1), 8),  # font size of other rows
          ("BACKGROUND", (0, 1), (-1, -1), colors.beige),
-         ("ALIGN", (1, 0), (-1, -1), "CENTER"),  # all columns except name center align
+        #  ("ALIGN", (1, 0), (-1, -1), "CENTER"),  # all columns except name center align
+         ("ALIGN", (0, 0), (-1, -1), "CENTER"),
          ]
     )
 
