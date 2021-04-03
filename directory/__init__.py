@@ -12,11 +12,13 @@ doc = master.document()
 
 from .pages.family_pages import page_template as family_page_template
 from .pages.birthdays import page_template as birthday_page_template
+from .pages.anniversaries import page_template as anniversary_page_template
 
 # setting master page templates
 doc.addPageTemplates([
   family_page_template,
   birthday_page_template,
+  anniversary_page_template,
   ])
 
 # Adding elements
