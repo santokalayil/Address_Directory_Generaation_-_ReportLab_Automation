@@ -15,10 +15,9 @@ page_template = PageTemplate(
         onPage=master.default_master,
     )
 
+from .elements import title_section
 
-# from .family_box import generate_box_elements
-from directory.database.get import basic_query
-from directory.settings import db_url
+
 
 def generate():
     Elements = []
@@ -26,11 +25,9 @@ def generate():
     Elements.append(NextPageTemplate(section_id))
     from reportlab.platypus import FrameBreak
     Elements.append(FrameBreak())
-    # sql = basic_query(db_url).sql_dataframe
-    # order_of_families = sql(
-    #     '''select * from members where rltshp = "Self" order by member_name'''
-    #     ).famid.to_dict().values()
+    Elements.append(title_section('Birthdays'))
 
-    # for order_id, fam_id in enumerate(order_of_families, start=1):
-    #     Elements += generate_box_elements(fam_id, order_id)
+    from .table import generate as table_generate
+    Elements += table_generate()
+
     return Elements
