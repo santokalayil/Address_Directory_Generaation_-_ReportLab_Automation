@@ -3,6 +3,5 @@ from pdf_generation.pages.birthdays.table import generate as table_generate
 
 
 def generate():
-    tables = table_generate()
-    elements = [PageBegin()] + tables
+    elements = table_generate()  # [PageBegin()] +
     return elements
