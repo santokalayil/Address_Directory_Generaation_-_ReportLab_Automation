@@ -91,7 +91,7 @@ def address_section(common_data):
     new_line = "<br/>"
 
     address_paragraph = Paragraph(
-        f"""Current Address: {common_data['text']['current_address']}"""+new_line+
+        f"""Residential Address: {common_data['text']['current_address']}"""+new_line+
         f"""Native Address: {common_data['text']['native_address']}"""+new_line+
         f"""Native Parish:{common_data['text']['native_parish']}"""+new_line+  # common_data['text']['diocese'] , # remove comma if using next line
         f"""Diocese: {common_data['text']['diocese']}""", 
