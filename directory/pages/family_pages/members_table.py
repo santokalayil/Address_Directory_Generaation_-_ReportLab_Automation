@@ -8,7 +8,7 @@ def members_table_section(fam_id, db_url=db_url):
     from directory.database.get import basic_query
     sql = basic_query(db_url).sql_dataframe
 
-    table_header = ["Name", "Relationship", "Profession", "Phone", "DOB", "DOM/DOO", "Blood"]
+    table_header = ["Name", "Relation", "Profession", "Phone", "DOB", "DOM/DOO", "Blood"]
     members_df = sql(f'''SELECT * FROM members WHERE famid = {fam_id};''')
     members_data = []
     members_data.append(table_header)
