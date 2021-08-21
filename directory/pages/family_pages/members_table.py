@@ -11,12 +11,17 @@ def members_table_section(fam_id, db_url=db_url):
     table_header = ["Name", "Relation", "Profession", "Phone", "DOB", "DOM/DOO", "Blood"]
     members_df = sql(f'''SELECT * FROM members WHERE famid = {fam_id};''')
     members_data = []
-    members_data.append(table_header)
+    # members_data.append(table_header)
     for i in range(members_df.shape[0]):
         member_series = members_df.loc[i]
         member_data = [member_series["member_name"], member_series['rltshp'], member_series['prof'],
                         member_series['phone'], member_series['dob'], member_series['dom'], member_series['blood_group']]
         members_data.append(member_data)
+
+    # ordering HOF to the front of the table after the table_header
+    self_member_data = [member for member in members_data if "Self"==member[1]][0]
+    members_data.remove(self_member_data)
+    members_data = [table_header, self_member_data] + members_data
 
     from reportlab.platypus import Table as RLTable
     from reportlab.platypus import TableStyle
