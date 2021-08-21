@@ -8,6 +8,11 @@ from directory.database.get import basic_query
 def generate():
     sql = lambda q: basic_query(db_url).sql_dataframe(q)  # view query function
     df = sql('''select * from members;''')
+
+    # new code added to bypass error where nothing in dob
+    df = df[(df.dob!=' ') ][['famid','member_name','rltshp','dob']] # & (df.dom.isna())
+    df = df[(df.dob!='')]
+
     df.dob = to_datetime(df.dob).dt.date
     bdf = df[['famid', 'member_name', 'dob']]
     hof = sql('''select famid, member_name as head_of_family from members where rltshp = "Self"''')
